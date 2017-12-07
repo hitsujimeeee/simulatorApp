@@ -1,0 +1,50 @@
+<ons-navigator animation="slide" var="myNavigator">
+    <ons-page id="tab2" var="tab2page">
+		<ons-gesture-detector>
+			<section class="sateiImgArea">
+				<header>◆野手基礎能力</header>
+				<div>
+					<a onclick="myNavigator.pushPage('./html/sateiDetail.html', {data:{item:'sateiBatterBase'}} )">
+						<img src="http://studiowool.webcrow.jp/products/pawapro/img/satei/sateiBatterBase.png">
+					</a>
+				</div>
+			</section>
+				
+			<section class="sateiImgArea">
+				<header>◆野手特能表</header>
+				<div>
+					<a onclick="myNavigator.pushPage('./html/sateiDetail.html', {data:{item:'sateiBatter'}} )">
+						<img src="http://studiowool.webcrow.jp/products/pawapro/img/satei/sateiBatter.png">
+					</a>
+				</div>
+			</section>
+			
+			<section class="sateiImgArea">
+				<header>◆野手金特表</header>
+				<div>
+					<a onclick="myNavigator.pushPage('./html/sateiDetail.html', {data:{item:'sateiBatterS'}} )">
+						<img src="http://studiowool.webcrow.jp/products/pawapro/img/satei/sateiBatterS.png">
+					</a>
+				</div>		  
+			</section>
+				
+			<section class="sateiImgArea">
+				<header>◆投手特能表</header>
+				<div>
+					<a onclick="myNavigator.pushPage('./html/sateiDetail.html', {data:{item:'sateiPitcher'}} )">
+						<img src="http://studiowool.webcrow.jp/products/pawapro/img/satei/sateiPitcher.png">
+					</a>
+				</div>		 
+			</section>
+
+			<section class="sateiImgArea">
+				<header>◆投手金特表</header>
+				<div>
+					<a onclick="myNavigator.pushPage('./html/sateiDetail.html', {data:{item:'sateiPitcherS'}} )">
+						<img src="http://studiowool.webcrow.jp/products/pawapro/img/satei/sateiPitcherS.png">
+					</a>
+				</div>			
+			</section>
+		</ons-gesture-detector>
+	</ons-page>
+</ons-navigator>

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+	<script src="components/loader.js"></script>
+	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/onsenui/js/onsenui.min.js"></script>
+	<script src="lib/onsenui/js/angular-onsenui.min.js"></script>
+	<script src="lib/jquery/jquery.js"></script>
+
+	<link rel="stylesheet" href="components/loader.css">
+	<link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+	<link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<script>
+		ons.bootstrap();
+		
+		ons.ready(function() {
+			ons.disableDeviceBackButtonHandler();
+			var defWidth, defHeight
+            var prevScale = 1;
+            var scale = 1;
+            
+            $(document).on('transform', '#detailImg', function(event) {
+                scale = Math.max(1, Math.min(prevScale * event.originalEvent.gesture.scale, 3.5));
+            	if (!defWidth) {
+               		defWidth = parseInt($(this).css('width'), 10);
+               		defHeight = parseInt($(this).css('height'), 10);
+            	}
+                $(this).css({'width':(defWidth * scale) + 'px', 'height':(defHeight * scale) + 'px'});				
+            });
+            $(document).on('release', '#detailImg', function(event) {
+                prevScale = scale;
+                
+            });
+
+            $(document).on('doubletap', '#detailImg', function(event) {
+            	if (!defWidth) {
+            		defWidth = parseInt($(this).css('width'), 10);
+            		defHeight = parseInt($(this).css('height'), 10);
+            	}
+        		scale = prevScale == 1 ? 2.5 : 1;
+        		$(this).animate({
+        			width: (defWidth * scale) + 'px',
+        			height: (defHeight * scale) + 'px'
+        		},{
+        			'duration':200,
+        			'easing': 'swing'	
+        		});
+                prevScale = scale;
+            });
+            
+            $(document).on('backbutton', function(event){
+				if(simuTab.getActiveTabIndex() === 0) {
+				    history.back();
+				} else {
+					myNavigator.popPage();
+				}
+            });
+            
+
+			document.addEventListener('init', function(event) {
+				var page = event.target;
+				if(page.matches('#sateiDetail')) {
+					defWidth = null;
+					defHeight = null;
+					document.querySelector('#detailImg').setAttribute('src', 'http://studiowool.webcrow.jp/products/pawapro/img/satei/' + page.data.item + '.png');
+				}
+			});
+
+		});
+		
+	</script>
+</head>
+<body>
+	<ons-tabbar position="bottom" var="simuTab">
+		<ons-tab label="育成シミュ" page="./html/tab1.html" active></ons-tab>
+		<ons-tab label="査定表" page="./html/tab2.html"></ons-tab>
+	</ons-tabbar>
+</body>
+</html>
